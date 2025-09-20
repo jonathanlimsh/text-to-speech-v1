@@ -1,0 +1,44 @@
+services:
+  tts-cpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tts-cli:cpu
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - HF_TOKEN
+      - TZ_OFFSET
+    volumes:
+      - ./assets:/app/assets
+    profiles: ["cpu"]
+
+  tts-gpu:
+    build:
+      context: .
+      dockerfile: Dockerfile.gpu
+    image: tts-cli:gpu
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - HF_TOKEN
+      - TZ_OFFSET
+    volumes:
+      - ./assets:/app/assets
+    # Compose with recent Docker supports this shorthand
+    gpus: all
+    # Also declare the Swarm-style reservation for compatibility
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    profiles: ["gpu"]

@@ -1,0 +1,32 @@
+﻿# GPU-enabled build using CUDA wheels for PyTorch
+FROM python:3.11-slim
+
+# System deps: ffmpeg for audio conversion, git for Chatterbox
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       ffmpeg \
+       git \
+       build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install CUDA-enabled PyTorch (CUDA 12.4 wheels) matching chatterbox torch==2.6.0
+RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cu124 torch==2.6.0+cu124 torchvision==0.21.0+cu124 torchaudio==2.6.0+cu124 \
+    && python -c "import torch,sys;print('Torch:',torch.__version__,'CUDA:',torch.version.cuda,'is_available:',torch.cuda.is_available())"
+
+# Install remaining Python deps (ensure numpy first for pkuseg build)
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir "numpy<1.26" \
+    && pip install --no-cache-dir -r /app/requirements.txt
+
+# Copy project files
+COPY . /app
+
+ENV PYTHONPATH="/app/src"
+
+# Create assets directories (persisted if mounted)
+RUN mkdir -p /app/assets/inputs /app/assets/outputs
+
+# Entrypoint to interactive CLI
+ENTRYPOINT ["python", "-m", "tts_cli.cli"]

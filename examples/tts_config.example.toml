@@ -1,0 +1,23 @@
+# Path to a UTF-8 text file containing the text to synthesize
+input_text_file = "examples/hello.txt"
+
+# Path to save the generated audio (WAV format recommended)
+output_path = "outputs/hello.wav"
+
+# Language code (must be one of the supported codes)
+# ar, da, de, el, en, es, fi, fr, he, hi, it, ja, ko, ms, nl, no, pl, pt, ru, sv, sw, tr, zh
+language_id = "en"
+
+# Optional: a short reference audio file to define voice/style
+# Accepts local file path. Leave empty to use the built-in default voice.
+audio_prompt_path = ""
+
+# Generation controls
+exaggeration = 0.5         # 0.25..2.0 (expressiveness)
+temperature  = 0.8         # 0.05..5.0 (randomness)
+cfg_weight   = 0.5         # 0.0..1.0  (guidance/pace; 0 enables language transfer)
+seed         = 0           # 0 means random; set >0 for reproducible results
+
+# Device selection: "auto" | "cuda" | "cpu"
+device = "auto"
+

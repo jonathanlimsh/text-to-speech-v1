@@ -1,0 +1,3 @@
+numpy>=1.24,<1.26
+git+https://github.com/resemble-ai/chatterbox.git
+langdetect>=1.0.9

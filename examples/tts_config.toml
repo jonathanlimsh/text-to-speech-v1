@@ -1,0 +1,11 @@
+# Copy of example with default paths suitable for local testing
+input_text_file = "examples/hello.txt"
+output_path = "outputs/hello.wav"
+language_id = "en"
+audio_prompt_path = ""
+exaggeration = 0.5
+temperature  = 0.8
+cfg_weight   = 0.5
+seed         = 0
+device = "auto"
+
