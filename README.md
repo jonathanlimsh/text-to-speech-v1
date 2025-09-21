@@ -308,3 +308,14 @@ Examples:
 - `tests/` – unit tests covering every helper; run them with `python run_tests.py`.
 - `examples/tts_config.toml` - default config used by the optional single-text example.
 - `examples/tts_from_text.py` – optional config-driven helper kept as a sample outside the main CLI.
+
+## Example Output
+- 女士们，先生们，晚上好。我是今天的司仪，Bryan。
+非常荣幸在此与各位相识，一同见证如此神圣的一刻。
+证婚典礼将在 5–10 分钟内举行。
+- [01_pre-announcement.wav](https://github.com/user-attachments/files/22452582/01_pre-announcement.wav)
+- Good evening, ladies and gentlemen. I am Bryan, your emcee today.
+It’s a pleasure to see all of you here to witness this wonderful event.
+Please be informed that the wedding solemnization will begin in about 5–10 minutes.
+- [01_pre-announcement.wav](https://github.com/user-attachments/files/22452588/01_pre-announcement.wav)
+
