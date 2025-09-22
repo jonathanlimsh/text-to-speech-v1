@@ -308,3 +308,6 @@ Examples:
 - `tests/` – unit tests covering every helper; run them with `python run_tests.py`.
 - `examples/tts_config.toml` - default config used by the optional single-text example.
 - `examples/tts_from_text.py` – optional config-driven helper kept as a sample outside the main CLI.
+
+-
+- <img width="1150" height="730" alt="image" src="https://github.com/user-attachments/assets/c3c25037-539a-4a9e-8d0e-91e51bc84f46" />
